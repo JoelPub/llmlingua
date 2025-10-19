@@ -1,7 +1,8 @@
 import time
 import json
 from typing import List, Dict, Any, Optional
-from .llmlingua2_config import LLMLingua2Config, CompressionMethod, CompressionResult
+from llmlingua2_config import LLMLingua2Config, CompressionMethod
+from llmlingua2_results import CompressionResult
 
 def calculate_compression_metrics(original: str, compressed: str) -> Dict[str, float]:
     """
@@ -36,7 +37,7 @@ def calculate_compression_metrics(original: str, compressed: str) -> Dict[str, f
 
 def validate_compression_result(result: CompressionResult) -> bool:
     """
-    Validate the compression result structure and values.
+    Validate compression result structure and values.
     
     Args:
         result: CompressionResult object to validate
@@ -76,7 +77,7 @@ def save_compression_result(result: CompressionResult, filepath: str):
     
     Args:
         result: CompressionResult object to save
-        filepath: Path to save the result file
+        filepath: Path to save result file
     """
     result_dict = result.to_dict() if hasattr(result, 'to_dict') else result.__dict__
     with open(filepath, 'w') as f:
@@ -87,7 +88,7 @@ def load_compression_config(filepath: str) -> LLMLingua2Config:
     Load llmlingua2 configuration from a JSON file.
     
     Args:
-        filepath: Path to the configuration file
+        filepath: Path to configuration file
         
     Returns:
         LLMLingua2Config object

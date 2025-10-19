@@ -3,9 +3,9 @@ import logging
 from typing import List, Optional, Dict, Any
 from tqdm import tqdm
 
-from .llmlingua2_config import LLMLingua2Config, CompressionMethod
-from .llmlingua2_results import CompressionResult
-from .llmlingua2_utils import (
+from llmlingua2_config import LLMLingua2Config, CompressionMethod
+from llmlingua2_results import CompressionResult
+from llmlingua2_utils import (
     calculate_compression_metrics, 
     validate_compression_result, 
     sanitize_prompt,
@@ -20,13 +20,13 @@ class LLMLingua2Compressor:
     """
     Main compression class for llmlingua2.
     
-    This class handles the core compression functionality, including
+    This class handles to core compression functionality, including
     single prompt compression, batch processing, and statistics tracking.
     """
     
     def __init__(self, config: Optional[LLMLingua2Config] = None):
         """
-        Initialize the compressor with configuration.
+        Initialize compressor with configuration.
         
         Args:
             config: LLMLingua2Config object. If None, uses default config.
@@ -43,10 +43,10 @@ class LLMLingua2Compressor:
         self._initialize_model()
         
     def _initialize_model(self):
-        """Initialize the compression model and tokenizer."""
+        """Initialize compression model and tokenizer."""
         try:
             # This is a placeholder for actual model initialization
-            # In a real implementation, this would load the actual model
+            # In a real implementation, this would load to actual model
             logger.info(f"Initializing model: {self.config.model_name}")
             logger.info(f"Device map: {self.config.device_map}")
             
@@ -88,7 +88,7 @@ class LLMLingua2Compressor:
             original_token_count = len(prompt.split())
             
             # Simulate compression process
-            # In a real implementation, this would use the actual model
+            # In a real implementation, this would use to actual model
             compressed_prompt = self._simulate_compression(prompt, target_token, method)
             
             # Calculate compressed token count
@@ -192,7 +192,7 @@ class LLMLingua2Compressor:
     
     def reset_config(self, config: LLMLingua2Config):
         """
-        Reset the compressor configuration.
+        Reset compressor configuration.
         
         Args:
             config: New LLMLingua2Config object
@@ -203,10 +203,10 @@ class LLMLingua2Compressor:
     
     def _simulate_compression(self, prompt: str, target_token: int, method: str) -> str:
         """
-        Simulate the compression process.
+        Simulate compression process.
         
-        This is a placeholder for the actual compression logic.
-        In a real implementation, this would use the loaded model.
+        This is a placeholder for actual compression logic.
+        In a real implementation, this would use to loaded model.
         
         Args:
             prompt: Input prompt

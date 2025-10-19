@@ -2,7 +2,7 @@ import json
 import time
 from typing import Optional, Dict, Any
 from dataclasses import dataclass, asdict
-from .llmlingua2_config import CompressionMethod
+from llmlingua2_config import CompressionMethod
 
 @dataclass
 class CompressionResult:
@@ -21,7 +21,7 @@ class CompressionResult:
     metadata: Optional[Dict[str, Any]] = None
 
     def __post_init__(self):
-        """Validate the compression result after initialization."""
+        """Validate compression result after initialization."""
         if self.compressed_token_count > self.original_token_count:
             raise ValueError("Compressed token count cannot be greater than original token count")
         
@@ -35,7 +35,7 @@ class CompressionResult:
             raise ValueError("Confidence score must be between 0 and 1")
 
     def to_dict(self) -> Dict[str, Any]:
-        """Convert the compression result to a dictionary."""
+        """Convert compression result to a dictionary."""
         return asdict(self)
 
     @classmethod
@@ -44,7 +44,7 @@ class CompressionResult:
         return cls(**data)
 
     def save_to_file(self, filepath: str):
-        """Save the compression result to a JSON file."""
+        """Save compression result to a JSON file."""
         with open(filepath, 'w') as f:
             json.dump(self.to_dict(), f, indent=4, default=str)
 
@@ -56,7 +56,7 @@ class CompressionResult:
         return cls.from_dict(data)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Get a summary of the compression result."""
+        """Get a summary of compression result."""
         return {
             "original_tokens": self.original_token_count,
             "compressed_tokens": self.compressed_token_count,
@@ -70,7 +70,7 @@ class CompressionResult:
         }
 
     def __str__(self) -> str:
-        """String representation of the compression result."""
+        """String representation of compression result."""
         summary = self.get_summary()
         return (
             f"CompressionResult:\n"
@@ -102,7 +102,7 @@ class CompressionResult:
             prioritize_ratio: If True, prioritize compression ratio over speed
             
         Returns:
-            True if this result is better than the other
+            True if this result is better than other
         """
         if prioritize_ratio:
             # Higher compression ratio is better (more compression)
