@@ -78,6 +78,6 @@ class LLMLingua2Config(BaseModel):
             if hasattr(self, key):
                 setattr(self, key, value)
             else:
-                raise AttributeError(f"'{cls.__name__}' object has no attribute '{key}'")
+                raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{key}'")
         # Re-validate after update
         self.validate()

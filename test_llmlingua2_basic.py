@@ -2,7 +2,7 @@
 """
 Basic functionality tests for llmlingua2.
 
-This file contains unit tests for the core functionality of llmlingua2.
+This file contains unit tests for core functionality of llmlingua2.
 """
 
 import sys
@@ -10,7 +10,7 @@ import os
 import unittest
 from unittest.mock import patch, MagicMock
 
-# Add the current directory to the path to import our modules
+# Add current directory to path to import our modules
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from llmlingua2_config import LLMLingua2Config, CompressionMethod, ModelType
@@ -486,18 +486,18 @@ class TestUtilityFunctions(unittest.TestCase):
         self.assertTrue(validate_compression_result(valid_result))
         self.assertFalse(validate_compression_result("not a result"))
         
-        # Invalid result
-        invalid_result = CompressionResult(
-            original_prompt="Test",
-            compressed_prompt="Test",
-            original_token_count=5,
-            compressed_token_count=10,  # Invalid
-            compression_ratio=0.5,
-            processing_time=0.1,
-            method_used="test",
-            model_used="test"
-        )
-        self.assertFalse(validate_compression_result(invalid_result))
+        # Test invalid result creation - should raise ValueError
+        with self.assertRaises(ValueError):
+            CompressionResult(
+                original_prompt="Test",
+                compressed_prompt="Test",
+                original_token_count=5,
+                compressed_token_count=10,  # Invalid
+                compression_ratio=0.5,
+                processing_time=0.1,
+                method_used="test",
+                model_used="test"
+            )
     
     def test_sanitize_prompt(self):
         """Test prompt sanitization."""
